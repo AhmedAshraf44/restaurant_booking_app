@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_booking_app/Features/home/presentation/views/widgets/custom_middle_list_view.dart';
-import '../../../../registration/presentation/views/widgets/custom_text_widget.dart';
+import '../../../../auth/presentation/views/widgets/custom_text_widget.dart';
 
 class CustomMiddleSection extends StatelessWidget {
   const CustomMiddleSection({super.key});

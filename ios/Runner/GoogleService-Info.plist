@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyDG2qWiuiWY80esMcypcJpMu6kyZjxu3Ec</string>
+	<key>GCM_SENDER_ID</key>
+	<string>790903904082</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.restaurantBookingApp</string>
+	<key>PROJECT_ID</key>
+	<string>restaurant-booking-app-f611d</string>
+	<key>STORAGE_BUCKET</key>
+	<string>restaurant-booking-app-f611d.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:790903904082:ios:621f7ef30cc734add18c8b</string>
+</dict>
+</plist>

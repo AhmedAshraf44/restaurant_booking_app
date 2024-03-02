@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_booking_app/core/utils/widgets/custom_button.dart';
-import 'package:restaurant_booking_app/Features/registration/presentation/views/widgets/custom_text.dart';
-import 'package:restaurant_booking_app/Features/registration/presentation/views/widgets/register_bottom_sheet.dart';
+import 'package:restaurant_booking_app/Features/auth/presentation/views/widgets/custom_text.dart';
+import 'package:restaurant_booking_app/Features/auth/presentation/views/widgets/auth_bottom_sheet.dart';
 import 'package:restaurant_booking_app/constants.dart';
 import 'package:restaurant_booking_app/core/utils/styles.dart';
 
-class RegisterBody extends StatelessWidget {
-  const RegisterBody({super.key});
+import '../../../../../core/functions/custom_show_modal_bottom_sheet.dart';
+
+class AuthBody extends StatelessWidget {
+  const AuthBody({super.key});
+
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(
-       // top: 135,
         right: 20,
         left: 20,),
       child: Column(
-      //  mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
          const Spacer(
@@ -54,18 +55,10 @@ class RegisterBody extends StatelessWidget {
             onPressed: () {
               showModalBottomSheet( 
                 isScrollControlled: true,
-              shape:const RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                  topRight: Radius.circular(30)
-                ),
-              ),
+              shape:buildRoundedRectangleBorder(),
               context: context,
                builder: (context) {
-                return const RegisterBottomSheet(index: 0,);
-                // SizedBox(
-                //  height: MediaQuery.of(context).size.height *kWidthButon,
-                //   child:  RegisterBottomSheet(index: 0,));
+                return const AuthBottomSheet(index: 0,);
                },);
             },
           ),
@@ -79,18 +72,10 @@ class RegisterBody extends StatelessWidget {
             onPressed: () {
               showModalBottomSheet( 
                 isScrollControlled: true,
-              shape:const RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                  topRight: Radius.circular(30)
-                ),
-              ),
+              shape:buildRoundedRectangleBorder(),
               context: context,
                builder: (context) {
-                return const RegisterBottomSheet(index:1,);
-                // SizedBox(
-                // height: MediaQuery.of(context).size.height *kWidthButon,
-                //   child:  RegisterBottomSheet(index:1,));
+                return const AuthBottomSheet(index:1,);
                },);
             },
           ),

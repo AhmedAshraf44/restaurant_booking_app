@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'custom_featured_text.dart';
-import '../../../Features/registration/presentation/views/widgets/custom_text_form_field.dart';
+import '../../../Features/auth/presentation/views/widgets/custom_text_form_field.dart';
 
 class CustomAllContentTextFormField extends StatelessWidget {
   const CustomAllContentTextFormField(

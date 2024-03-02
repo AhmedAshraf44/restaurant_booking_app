@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:restaurant_booking_app/Features/registration/presentation/views/widgets/create_acount_tab.dart';
-import 'package:restaurant_booking_app/Features/registration/presentation/views/widgets/login_tab.dart';
+import 'package:restaurant_booking_app/Features/auth/presentation/views/widgets/create_acount_tab.dart';
+import 'package:restaurant_booking_app/Features/auth/presentation/views/widgets/login_tab.dart';
 import 'package:restaurant_booking_app/constants.dart';
 import 'package:restaurant_booking_app/core/utils/app_router.dart';
 import 'package:restaurant_booking_app/core/utils/styles.dart';
 
-class RegisterForm extends StatefulWidget {
-  const RegisterForm({super.key, required this.index});
+class AuthForm extends StatefulWidget {
+  const AuthForm({super.key, required this.index});
   final int index;
 
   @override
-  State<RegisterForm> createState() => _RegisterFormState();
+  State<AuthForm> createState() => _AuthFormState();
 }
 
-class _RegisterFormState extends State<RegisterForm> {
+class _AuthFormState extends State<AuthForm> {
   final GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   int? currentInde;

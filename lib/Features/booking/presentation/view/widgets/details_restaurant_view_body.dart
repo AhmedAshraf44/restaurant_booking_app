@@ -5,16 +5,16 @@ import 'package:restaurant_booking_app/core/utils/styles.dart';
 import 'package:restaurant_booking_app/core/utils/widgets/custom_card.dart';
 import 'package:restaurant_booking_app/core/utils/widgets/custom_elevated_button.dart';
 
-import '../../../../registration/presentation/views/widgets/custom_text_widget.dart';
+import '../../../../auth/presentation/views/widgets/custom_text_widget.dart';
 
 class DetailsRestaurantViewBody extends StatelessWidget {
   const DetailsRestaurantViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       children: [
-        const Padding(
+         Padding(
           padding: EdgeInsets.only(
             top: 8,
             bottom: 15,

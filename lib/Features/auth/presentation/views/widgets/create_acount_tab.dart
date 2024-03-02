@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_booking_app/Features/registration/presentation/views/widgets/custom_text_button.dart';
+import 'package:restaurant_booking_app/Features/auth/presentation/views/widgets/custom_text_button.dart';
 import 'package:restaurant_booking_app/core/utils/widgets/custom_button.dart';
 import 'package:restaurant_booking_app/constants.dart';
 

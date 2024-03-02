@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_booking_app/Features/registration/presentation/views/widgets/register_form.dart';
+import 'package:restaurant_booking_app/Features/auth/presentation/views/widgets/auth_form.dart';
 
-class RegisterBottomSheet extends StatelessWidget {
-  const RegisterBottomSheet({super.key, required this.index});
+class AuthBottomSheet extends StatelessWidget {
+  const AuthBottomSheet({super.key, required this.index});
   final int index;
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class RegisterBottomSheet extends StatelessWidget {
          left: 16,
           bottom: MediaQuery.of(context).viewInsets.bottom,
       ),
-      child: RegisterForm(index: index),
+      child: AuthForm(index: index),
     );
   }
 }

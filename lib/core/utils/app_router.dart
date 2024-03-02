@@ -8,7 +8,7 @@ import '../../Features/forget_password/presentation/views/change_new_password_vi
 import '../../Features/forget_password/presentation/views/check_email_view.dart';
 import '../../Features/forget_password/presentation/views/success_view.dart';
 import '../../Features/onboarding/presentation/views/onboarding_view.dart';
-import '../../Features/registration/presentation/views/register_view.dart';
+import '../../Features/auth/presentation/views/auth_view.dart';
 
 abstract class AppRouter {
   static const kRegisterView = '/RegisterView';
@@ -28,7 +28,7 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kRegisterView,
-        builder: (context, state) => const RegisterView(),
+        builder: (context, state) => const AuthView(),
       ),
       GoRoute(
         path: kHomeView,
