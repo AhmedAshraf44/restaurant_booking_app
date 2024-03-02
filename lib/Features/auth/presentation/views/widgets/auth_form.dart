@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:restaurant_booking_app/Features/auth/presentation/views/widgets/create_acount_tab.dart';
 import 'package:restaurant_booking_app/Features/auth/presentation/views/widgets/login_tab.dart';
 import 'package:restaurant_booking_app/constants.dart';
-import 'package:restaurant_booking_app/core/utils/app_router.dart';
 import 'package:restaurant_booking_app/core/utils/styles.dart';
 
 class AuthForm extends StatefulWidget {
@@ -15,13 +13,15 @@ class AuthForm extends StatefulWidget {
 }
 
 class _AuthFormState extends State<AuthForm> {
-  final GlobalKey<FormState> formKey = GlobalKey();
-  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+  // final GlobalKey<FormState> formKey = GlobalKey();
+  // AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   int? currentInde;
-  bool validate = false;
-  bool obscureText = true;
-  IconData suffixIcon = Icons.visibility;
-
+  // bool validate = false;
+  // bool obscureText = true;
+  // IconData suffixIcon = Icons.visibility;
+  // String? password;
+  // String? email;
+  // String? name;
   @override
   void initState() {
     currentInde = widget.index;
@@ -33,9 +33,6 @@ class _AuthFormState extends State<AuthForm> {
     return DefaultTabController(
       length: 2,
       initialIndex: widget.index,
-      child: Form(
-        autovalidateMode: autovalidateMode,
-        key: formKey,
         child: SizedBox(
           height: MediaQuery.of(context).size.height * kWidthButon,
           child: Column(children: [
@@ -67,81 +64,15 @@ class _AuthFormState extends State<AuthForm> {
                     ),
                   ),
                 ]),
-            Expanded(
+           const Expanded(
               child:
-                  TabBarView(physics: const BouncingScrollPhysics(), children: [
-                CreateAcountTab(
-                  prefixIconColor: validate ? kSecondaryColor : Colors.black,
-                  obscureText: obscureText,
-                  suffixIcon: suffixIcon,
-                  suffixIconColor: obscureText ? kSecondaryColor : Colors.black,
-                  onPressed: () {
-                    setState(() {
-                      obscureText = !obscureText;
-                      suffixIcon =
-                          obscureText ? Icons.visibility : Icons.visibility_off;
-                    });
-                  },
-                  colorButton: validate ? kPrimaryColor : kThirdColor,
-                  colorText: validate ? Colors.white : kSecondaryColor,
-                  colorTopTextFeild:
-                      validate ? kInputTextFeildColor : Colors.black,
-                  onChanged: (value) {
-                    setState(() {
-                      validate = formKey.currentState!.validate();
-                    });
-                  },
-                  onPressedRegistration: () {
-                    if (formKey.currentState!.validate()) {
-                      formKey.currentState!.save();
-                      GoRouter.of(context).push(AppRouter.kHomeView);
-                      // ScaffoldMessenger.of(context).showSnackBar(
-                      //     const SnackBar(content: Text('Processing Data')));
-                    } else {
-                      setState(() {
-                        autovalidateMode = AutovalidateMode.always;
-                        validate = false;
-                      });
-                    }
-                  },
-                ),
-                LoginTab(
-                  prefixIconColor: validate ? kSecondaryColor : Colors.black,
-                  obscureText: obscureText,
-                  suffixIcon: suffixIcon,
-                  suffixIconColor: obscureText ? kSecondaryColor : Colors.black,
-                  onPressed: () {
-                    setState(() {
-                      obscureText = !obscureText;
-                      suffixIcon =
-                          obscureText ? Icons.visibility : Icons.visibility_off;
-                    });
-                  },
-                  colorButton: validate ? kPrimaryColor : kThirdColor,
-                  colorText: validate ? Colors.white : kSecondaryColor,
-                  colorTopTextFeild:
-                      validate ? kInputTextFeildColor : Colors.black,
-                  onChanged: (value) {
-                    setState(() {
-                      validate = formKey.currentState!.validate();
-                    });
-                  },
-                  onPressedLogin: () {
-                    if (formKey.currentState!.validate()) {
-                      formKey.currentState!.save();
-                      GoRouter.of(context).push(AppRouter.kHomeView);
-                    } else {
-                      autovalidateMode = AutovalidateMode.always;
-                      validate = false;
-                      setState(() {});
-                    }
-                  },
-                ),
+                  TabBarView(physics:  BouncingScrollPhysics(), children: [
+                CreateAcountTab(),
+                LoginTab(),
               ]),
             )
           ]),
         ),
-      ),
     );
   }
 }

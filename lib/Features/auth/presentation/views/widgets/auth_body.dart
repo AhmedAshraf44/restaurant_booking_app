@@ -5,7 +5,7 @@ import 'package:restaurant_booking_app/Features/auth/presentation/views/widgets/
 import 'package:restaurant_booking_app/constants.dart';
 import 'package:restaurant_booking_app/core/utils/styles.dart';
 
-import '../../../../../core/functions/custom_show_modal_bottom_sheet.dart';
+import '../../../../../core/functions/build_rounded_rectangle_border.dart';
 
 class AuthBody extends StatelessWidget {
   const AuthBody({super.key});
@@ -42,9 +42,6 @@ class AuthBody extends StatelessWidget {
                 style: Styles.textStyle14.copyWith(color: kSecondaryColor,fontWeight: FontWeight.w400),
                 textAlign: TextAlign.center),
           ),
-          // const SizedBox(
-          //   height: 100,
-          // ),
          const  Spacer(
             flex: 2,
            ),

@@ -8,99 +8,156 @@ import 'package:restaurant_booking_app/core/utils/app_router.dart';
 
 import '../../../../../core/utils/widgets/custom_all_content_text_form_field.dart';
 
-class LoginTab extends StatelessWidget {
+class LoginTab extends StatefulWidget {
   const LoginTab(
-      {super.key,
-      required this.onPressedLogin,
-      required this.colorButton,
-      required this.colorText,
-      this.onChanged,
-      this.colorTopTextFeild,
-      required this.prefixIconColor,
-      this.suffixIcon = Icons.visibility_off,
-      this.suffixIconColor = Colors.black,
-      required this.obscureText,
-      this.onPressed});
+      {super.key,});
 
-  final void Function()? onPressedLogin;
-  final Color colorButton;
-  final Color colorText;
-  final void Function(String)? onChanged;
-  final Color? colorTopTextFeild;
-  final void Function()? onPressed;
-  final IconData suffixIcon;
-  final Color prefixIconColor;
-  final Color suffixIconColor;
-  final bool obscureText;
+
+  @override
+  State<LoginTab> createState() => _LoginTabState();
+}
+
+class _LoginTabState extends State<LoginTab> {
+   final GlobalKey<FormState> formKey = GlobalKey();
+  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+  bool validate = false;
+  bool obscureText = true;
+  IconData suffixIcon = Icons.visibility;
+  String? password;
+  String? email;
+
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Spacer(
-          flex: 4,
-        ),
-        CustomAllContentTextFormField(
-          textFormField: 'Eg namaemail@emailkamu.com ',
-          topTextFeild: 'Email address',
-          colorTopTextFeild: colorTopTextFeild,
-          onChanged: onChanged,
-          prefixIcon: Icons.email_outlined,
-          prefixIconColor: prefixIconColor,
-        ),
-        const SizedBox(
-          height: 16,
-        ),
-        CustomAllContentTextFormField(
-          textFormField: '**** **** **** ',
-          topTextFeild: 'Password',
-          colorTopTextFeild: colorTopTextFeild,
-          onChanged: onChanged,
-          prefixIcon: Icons.password,
-          prefixIconColor: prefixIconColor,
-          obscureText: obscureText,
-          suffixIcon: suffixIcon,
-          onPressed: onPressed,
-          suffixIconColor: suffixIconColor,
-        ),
-        const SizedBox(
-          height: 8,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            CustomFeaturedText(
-              text: 'Forget Password?',
-              color: kPrimaryColor,
-              onTap: () {
-                GoRouter.of(context).push(AppRouter.kForgetPasswordView);
-              },
-            ),
-          ],
-        ),
-        const Spacer(
-          flex: 3,
-        ),
-        Center(
-            child: CustomButton(
-                onPressed: onPressedLogin,
-                text: 'Login',
-                colorButton: colorButton,
-                colorText: colorText)),
-        const Spacer(),
-        Center(
-          child: CustomTextButton(
-            onTap: () {},
-            text: 'Login with Google',
-            colorButton: kThirdColor,
-            colorText: Colors.black,
+    return Form(
+      key: formKey,
+      autovalidateMode: autovalidateMode,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Spacer(
+            flex: 4,
           ),
-        ),
-        const Spacer(
-          flex: 2,
-        ),
-      ],
+          CustomAllContentTextFormField(
+            textFormField: 'Eg namaemail@emailkamu.com ',
+            topTextFeild: 'Email address',
+            colorTopTextFeild:  validate ? kInputTextFeildColor : Colors.black,
+                  onChanged: (data) {
+                    email = data;
+                    setState(() {
+                      validate = formKey.currentState!.validate();
+                    });
+                  },
+            prefixIcon: Icons.email_outlined,
+            prefixIconColor: validate ? kSecondaryColor : Colors.black,
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          CustomAllContentTextFormField(
+            textFormField: '**** **** **** ',
+            topTextFeild: 'Password',
+            colorTopTextFeild:  validate ? kInputTextFeildColor : Colors.black,
+                   onChanged: (data) {
+                     password = data;
+                    setState(() {
+                      validate = formKey.currentState!.validate();
+                    });
+                  },
+            prefixIcon: Icons.password,
+            prefixIconColor: validate ? kSecondaryColor : Colors.black,
+            obscureText: obscureText,
+            suffixIcon:suffixIcon,
+            onPressed:  () {
+                    setState(() {
+                      obscureText = !obscureText;
+                      suffixIcon =
+                          obscureText ? Icons.visibility : Icons.visibility_off;
+                    });
+                  },
+            suffixIconColor: obscureText ? kSecondaryColor : Colors.black,
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              CustomFeaturedText(
+                text: 'Forget Password?',
+                color: kPrimaryColor,
+                onTap: () {
+                  GoRouter.of(context).push(AppRouter.kForgetPasswordView);
+                },
+              ),
+            ],
+          ),
+          const Spacer(
+            flex: 3,
+          ),
+          Center(
+              child: CustomButton(
+                  onPressed:
+                  () {
+                    if (formKey.currentState!.validate()) {
+                      formKey.currentState!.save();
+                      GoRouter.of(context).push(AppRouter.kHomeView);
+                    } else {
+                      autovalidateMode = AutovalidateMode.always;
+                      validate = false;
+                      setState(() {});
+                    }
+                  },
+                  text: 'Login',
+                  colorButton:  validate ? kPrimaryColor : kThirdColor,
+                  colorText:validate ? Colors.white : kSecondaryColor)),
+          const Spacer(),
+          Center(
+            child: CustomTextButton(
+              onTap: () {},
+              text: 'Login with Google',
+              colorButton: kThirdColor,
+              colorText: Colors.black,
+            ),
+          ),
+          const Spacer(
+            flex: 2,
+          ),
+        ],
+      ),
     );
   }
 }
+
+
+// prefixIconColor: validate ? kSecondaryColor : Colors.black,
+//                   obscureText: obscureText,
+//                   suffixIcon: suffixIcon,
+//                   suffixIconColor: obscureText ? kSecondaryColor : Colors.black,
+//                   onPressed: () {
+//                     setState(() {
+//                       obscureText = !obscureText;
+//                       suffixIcon =
+//                           obscureText ? Icons.visibility : Icons.visibility_off;
+//                     });
+//                   },
+//                   colorButton: validate ? kPrimaryColor : kThirdColor,
+//                   colorText: validate ? Colors.white : kSecondaryColor,
+//                   colorTopTextFeild:
+//                       validate ? kInputTextFeildColor : Colors.black,
+//                   onChanged: (value) {
+//                     setState(() {
+//                       validate = formKey.currentState!.validate();
+//                     });
+//                   },
+//                   onPressedLogin: () {
+//                     if (formKey.currentState!.validate()) {
+//                       formKey.currentState!.save();
+//                       GoRouter.of(context).push(AppRouter.kHomeView);
+//                     } else {
+//                       autovalidateMode = AutovalidateMode.always;
+//                       validate = false;
+//                       setState(() {});
+//                     }
+//                   },
