@@ -13,15 +13,7 @@ class AuthForm extends StatefulWidget {
 }
 
 class _AuthFormState extends State<AuthForm> {
-  // final GlobalKey<FormState> formKey = GlobalKey();
-  // AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   int? currentInde;
-  // bool validate = false;
-  // bool obscureText = true;
-  // IconData suffixIcon = Icons.visibility;
-  // String? password;
-  // String? email;
-  // String? name;
   @override
   void initState() {
     currentInde = widget.index;
@@ -33,46 +25,43 @@ class _AuthFormState extends State<AuthForm> {
     return DefaultTabController(
       length: 2,
       initialIndex: widget.index,
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height * kWidthButon,
-          child: Column(children: [
-            TabBar(
-                onTap: (value) {
-                  setState(() {
-                    currentInde = value;
-                  });
-                },
-                indicatorColor: kPrimaryColor,
-                indicatorSize: TabBarIndicatorSize.label,
-                tabs: [
-                  Tab(
-                    child: Text(
-                      'Create Account',
-                      style: Styles.textStyle16Regular.copyWith(
-                        color:
-                            currentInde == 0 ? kPrimaryColor : kSecondaryColor,
-                      ),
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height * kWidthButon,
+        child: Column(children: [
+          TabBar(
+              onTap: (value) {
+                setState(() {
+                  currentInde = value;
+                });
+              },
+              indicatorColor: kPrimaryColor,
+              indicatorSize: TabBarIndicatorSize.label,
+              tabs: [
+                Tab(
+                  child: Text(
+                    'Create Account',
+                    style: Styles.textStyle16Regular.copyWith(
+                      color: currentInde == 0 ? kPrimaryColor : kSecondaryColor,
                     ),
                   ),
-                  Tab(
-                    child: Text(
-                      'Login',
-                      style: Styles.textStyle16Regular.copyWith(
-                        color:
-                            currentInde == 1 ? kPrimaryColor : kSecondaryColor,
-                      ),
+                ),
+                Tab(
+                  child: Text(
+                    'Login',
+                    style: Styles.textStyle16Regular.copyWith(
+                      color: currentInde == 1 ? kPrimaryColor : kSecondaryColor,
                     ),
                   ),
-                ]),
-           const Expanded(
-              child:
-                  TabBarView(physics:  BouncingScrollPhysics(), children: [
-                CreateAcountTab(),
-                LoginTab(),
+                ),
               ]),
-            )
-          ]),
-        ),
+          const Expanded(
+            child: TabBarView(physics: BouncingScrollPhysics(), children: [
+              CreateAcountTab(),
+              LoginTab(),
+            ]),
+          )
+        ]),
+      ),
     );
   }
 }

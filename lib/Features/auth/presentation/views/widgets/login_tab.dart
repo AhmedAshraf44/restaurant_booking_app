@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:restaurant_booking_app/Features/auth/presentation/views/widgets/custom_text_button.dart';
+import 'package:restaurant_booking_app/core/functions/show_snack_bar.dart';
 import 'package:restaurant_booking_app/core/utils/widgets/custom_button.dart';
 import 'package:restaurant_booking_app/core/utils/widgets/custom_featured_text.dart';
 import 'package:restaurant_booking_app/constants.dart';
 import 'package:restaurant_booking_app/core/utils/app_router.dart';
-
 import '../../../../../core/utils/widgets/custom_all_content_text_form_field.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
 class LoginTab extends StatefulWidget {
   const LoginTab(
       {super.key,});
-
 
   @override
   State<LoginTab> createState() => _LoginTabState();
@@ -99,10 +98,21 @@ class _LoginTabState extends State<LoginTab> {
           Center(
               child: CustomButton(
                   onPressed:
-                  () {
+                  () async {
                     if (formKey.currentState!.validate()) {
-                      formKey.currentState!.save();
-                      GoRouter.of(context).push(AppRouter.kHomeView);
+                     try {
+    await loginUser();
+                      //  GoRouter.of(context).push(AppRouter.kHomeView);
+          showSnackBar(context,'suceess');
+} on FirebaseAuthException catch (e) {
+  if (e.code == 'user-not-found') {
+    showSnackBar(context,'No user found for that email.');
+  } else if (e.code == 'wrong-password') {
+        showSnackBar(context,'Wrong password provided for that user.');
+
+  }
+}
+                      //formKey.currentState!.save();
                     } else {
                       autovalidateMode = AutovalidateMode.always;
                       validate = false;
@@ -127,6 +137,14 @@ class _LoginTabState extends State<LoginTab> {
         ],
       ),
     );
+  }
+
+  Future<UserCredential> loginUser() async {
+    UserCredential user = await FirebaseAuth.instance.signInWithEmailAndPassword(
+     email: email!,
+     password: password!,
+      );
+    return user;
   }
 }
 
